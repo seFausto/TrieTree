@@ -6,8 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.*;
-import java.util.AbstractCollection;
-import java.util.AbstractSequentialList;
 
 
 public class TrieTreeTest {
@@ -17,11 +15,11 @@ public class TrieTreeTest {
 	public void setUp() throws Exception {
 		
 		tree = new TrieTree();
-		tree.AddWord("are");
-		tree.AddWord("arena");
-		tree.AddWord("amber");
-		tree.AddWord("test");
-		tree.AddWord("bARato");
+		tree.add("are");
+		tree.add("arena");
+		tree.add("amber");
+		tree.add("test");
+		tree.add("bARato");
 		
 	}
 
@@ -33,15 +31,15 @@ public class TrieTreeTest {
 	@Test
 	public void testAddWord() {
 		String wordToAdd = "fausto";
-		tree.AddWord(wordToAdd);
+		tree.add(wordToAdd);
 		
-		assertTrue(tree.FindWordInTree(wordToAdd));
+		assertTrue(tree.findWordInTree(wordToAdd));
 	}
 
 	@Test
 	public void testGetWordsFromTree() {
 		List<String> result = new ArrayList<String>();
-		result = tree.GetWordsFromTree();
+		result = tree.getWordsFromTree();
 		
 		assertTrue(result.size() == 5);
 	}
@@ -50,14 +48,14 @@ public class TrieTreeTest {
 	public void testFindWordInTree() {
 		String wordToFind = "test";
 		
-		assertTrue(tree.FindWordInTree(wordToFind));
+		assertTrue(tree.findWordInTree(wordToFind));
 	}
 
 	@Test
 	public void testFindWordsWithSubstring() {
 		String subString = "ar";
 		List<String> result = new ArrayList<String>();
-		result = tree.FindWordsWithSubstring(subString);
+		result = tree.findWordsWithSubstring(subString);
 		
 		assertTrue(result.size() == 3);
 	}

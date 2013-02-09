@@ -1,6 +1,4 @@
 import java.util.*;
-import java.util.AbstractCollection;
-import java.util.AbstractSequentialList;
 
 public class TrieTree{
 
@@ -17,7 +15,7 @@ public class TrieTree{
 	}
 
 	
-	public int AddWord(String word) {
+	public int add(String word) {
 		int result = -1;
 
 		char[] charactersInWord = word.toLowerCase().toCharArray();
@@ -27,10 +25,10 @@ public class TrieTree{
 		for (int letterCount = 0; letterCount < word.length(); letterCount++) {
 			//find out if that letter is already in the tree 
 			//and the correct index
-			if (this.FindNextIndexOfChar(charactersInWord[letterCount],
+			if (this.findNextIndexOfChar(charactersInWord[letterCount],
 					indexOfPreviousChar) > -1) {
 				//If so, get the next index, and continue
-				indexOfPreviousChar = this.FindNextIndexOfChar(
+				indexOfPreviousChar = this.findNextIndexOfChar(
 						charactersInWord[letterCount], indexOfPreviousChar);
 				continue;
 			}
@@ -50,7 +48,7 @@ public class TrieTree{
 		return result;
 	}
 
-	private int FindNextIndexOfChar(char c, int index) {
+	private int findNextIndexOfChar(char c, int index) {
 		int result = -1;
 
 		for (int letterCount = 0; letterCount < letters.size(); letterCount++) {
@@ -67,7 +65,7 @@ public class TrieTree{
 
 	}
 	
-	public List<String> GetWordsFromTree() {
+	public List<String> getWordsFromTree() {
 		List<String> result = new ArrayList<String>();
 
 		List<Character> newWord = new ArrayList<Character>();
@@ -101,16 +99,16 @@ public class TrieTree{
 		return reversedWord;
 	}
 
-	public Boolean FindWordInTree(String s) {
+	public Boolean findWordInTree(String s) {
 		
-		return  this.GetWordsFromTree().contains(s);
+		return  this.getWordsFromTree().contains(s);
 	}
 
-	public List<String> FindWordsWithSubstring(String s) {
+	public List<String> findWordsWithSubstring(String s) {
 		
 		List<String> result = new ArrayList<String>();
 
-		//conver the string to char array to loop through
+		//convert the string to char array to loop through
 		char[] charactersToCheck = s.toLowerCase().toCharArray();
 		//set the max index, we're looping backwards
 		int characterIndex = charactersToCheck.length - 1;
@@ -124,7 +122,7 @@ public class TrieTree{
 
 		Boolean startCharacterCheck = false;
 
-		//Loop through all indeces
+		//Loop through all indexes
 		for (int lastIndex = lastIndeces.size() - 1; lastIndex >= 0; lastIndex--) {
 		
 			int letterIndex = lastIndeces.get(lastIndex);
@@ -136,34 +134,26 @@ public class TrieTree{
 
 				//check the indexes to make sure we don't go out of range
 				if (characterIndex >= 0 && letterIndex >= 0) {
+					int tempIndex = characterMatchcheck(charactersToCheck,
+					characterIndex, matchesCharacter,
+					startCharacterCheck, letterIndex);
 					
-					if (letters.get(letterIndex) == charactersToCheck[characterIndex]) {
-						//if the letters match
-						//make sure they are continuous with the "startCharactercheck"
+					if(tempIndex < characterIndex){
 						startCharacterCheck = true;
-						matchesCharacter[characterIndex] = true;
-						characterIndex--;
-
-					} else if (characterIndex == -1) {
-						// do nothing, because we already found a match
-					} else if (startCharacterCheck) {
+						characterIndex = tempIndex;
+					}
+					else if (characterIndex == -1){
+						//do nothing because we found a match
+					}
+					else if (startCharacterCheck){
 						startCharacterCheck = false;
 					}
 				}
 
 			} while (letterIndex > -1);
 
-			Boolean addToResult = true;
-			//check all of the matches, if one is false, then it's not a match
-			for (int i = 0; i < matchesCharacter.length; i++) {
-				if (!matchesCharacter[i]) {
-					addToResult = false;
-					break;
-				}
-			}
-
 			//if it's a match, add it to the result
-			if (addToResult)
+			if (checkIfAllTrue(matchesCharacter))
 				result.add(new String(reverseString(word).toString()));
 
 			word.clear();
@@ -174,4 +164,38 @@ public class TrieTree{
 		return result;
 
 	}
+
+
+	private int characterMatchcheck(char[] charactersToCheck,
+			int characterIndex, Boolean[] matchesCharacter,
+			Boolean startCharacterCheck, int letterIndex) {
+		if (letters.get(letterIndex) == charactersToCheck[characterIndex]) {
+			//if the letters match
+			//make sure they are continuous with the "startCharactercheck"
+			//startCharacterCheck = true;
+			matchesCharacter[characterIndex] = true;
+			characterIndex--;
+
+		} else if (characterIndex == -1) {
+			// do nothing, because we already found a match
+		} else if (startCharacterCheck) {
+			//startCharacterCheck = false;
+		}
+		return characterIndex;
+	}
+
+
+	private Boolean checkIfAllTrue(Boolean[] matchesCharacter) {
+		Boolean addToResult = true;
+		//check all of the matches, if one is false, then it's not a match
+		for (int i = 0; i < matchesCharacter.length; i++) {
+			if (!matchesCharacter[i]) {
+				addToResult = false;
+				break;
+			}
+		}
+		return addToResult;
+	}
+
+	//public String toString
 }
