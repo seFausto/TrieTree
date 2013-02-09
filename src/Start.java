@@ -9,11 +9,22 @@ public class Start {
 		t.add("test");
 		t.add("bARato");
 		
-		t.contains("ar");
-		
-		
-		
-		System.out.print(t.findWordInTree("amber"));
+		t.containsSubstring("ar");
+	
+		while (t.hasNext())
+		{
+			String temp = t.next();
+	
+			if (temp.equals("test"))
+			{
+				System.out.println("removing test");
+				t.remove();
+				
+			}
+			System.out.println(temp);
+			
+			
+		}
 		
 		
 	}
