@@ -211,5 +211,9 @@ public class TrieTree implements Iterator<String> {
 		lastIndexes.remove(iteratorIndex);
 	}
 
-	// public String toString
+	public String toString()
+	{
+		return "Trie that contains " + lastIndexes.size() + " words";
+		
+	}
 }

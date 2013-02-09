@@ -7,20 +7,19 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.*;
 
-
 public class TrieTreeTest {
-	TrieTree tree ;
-	
+	TrieTree tree;
+
 	@Before
 	public void setUp() throws Exception {
-		
+
 		tree = new TrieTree();
 		tree.add("are");
 		tree.add("arena");
 		tree.add("amber");
 		tree.add("test");
 		tree.add("bARato");
-		
+
 	}
 
 	@After
@@ -32,7 +31,7 @@ public class TrieTreeTest {
 	public void testAddWord() {
 		String wordToAdd = "fausto";
 		tree.add(wordToAdd);
-		
+
 		assertTrue(tree.findWordInTree(wordToAdd));
 	}
 
@@ -40,14 +39,14 @@ public class TrieTreeTest {
 	public void testGetWordsFromTree() {
 		List<String> result = new ArrayList<String>();
 		result = tree.getWordsFromTree();
-		
+
 		assertTrue(result.size() == 5);
 	}
 
 	@Test
 	public void testFindWordInTree() {
 		String wordToFind = "test";
-		
+
 		assertTrue(tree.findWordInTree(wordToFind));
 	}
 
@@ -56,7 +55,7 @@ public class TrieTreeTest {
 		String subString = "ar";
 		List<String> result = new ArrayList<String>();
 		result = tree.containsSubstring(subString);
-		
+
 		assertTrue(result.size() == 3);
 	}
 
