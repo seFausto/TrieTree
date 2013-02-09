@@ -9,7 +9,7 @@ public class Start {
 		t.add("test");
 		t.add("bARato");
 		
-		t.findWordsWithSubstring("ar");
+		t.contains("ar");
 		
 		
 		

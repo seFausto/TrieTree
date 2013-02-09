@@ -55,7 +55,7 @@ public class TrieTreeTest {
 	public void testFindWordsWithSubstring() {
 		String subString = "ar";
 		List<String> result = new ArrayList<String>();
-		result = tree.findWordsWithSubstring(subString);
+		result = tree.contains(subString);
 		
 		assertTrue(result.size() == 3);
 	}

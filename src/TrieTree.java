@@ -91,7 +91,6 @@ public class TrieTree{
 	}
 
 	private String reverseString(List<Character> newWord) {
-		//Reverse the order of a word
 		String reversedWord = "";
 		for (int count = newWord.size() - 1; count >= 0; count--) {
 			reversedWord += newWord.get(count).toString();
@@ -104,11 +103,10 @@ public class TrieTree{
 		return  this.getWordsFromTree().contains(s);
 	}
 
-	public List<String> findWordsWithSubstring(String s) {
+	public List<String> contains(String s) {
 		
 		List<String> result = new ArrayList<String>();
 
-		//convert the string to char array to loop through
 		char[] charactersToCheck = s.toLowerCase().toCharArray();
 		//set the max index, we're looping backwards
 		int characterIndex = charactersToCheck.length - 1;
