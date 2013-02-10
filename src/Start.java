@@ -6,16 +6,16 @@ public class Start {
 		TrieTree t = new TrieTree();
 		t.add("are");
 		t.add("arena");
-		t.add("amber");
+		t.add("ambther");
 		t.add("test");
 		t.add("bARato");
-		t.add("checks");
+		t.add("chthecks");
 		t.add("checkmate");
 
 		t.containsSubstring("ar");
 
 		VisitorStrategy vs = new VisitorStrategyImplementation();
-		Strategy s = new StrategyContainsTwoVowels();
+		Strategy s = new StrategyWordsContainingTH();
 		vs.setStrategy(s);
 		List<String> words = vs.visitTree(t);
 		
