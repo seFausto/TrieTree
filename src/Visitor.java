@@ -1,3 +1,5 @@
+import java.util.*;
+
 abstract class Visitor {
-	abstract void visitTrieTree(TrieTree tree);
+	abstract List<String> visitTrieTree(TrieTree tree);
 }

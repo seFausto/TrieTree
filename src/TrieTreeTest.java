@@ -19,7 +19,6 @@ public class TrieTreeTest {
 		tree.add("amber");
 		tree.add("test");
 		tree.add("bARato");
-
 	}
 
 	@After

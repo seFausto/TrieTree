@@ -16,32 +16,38 @@ public class TrieTree implements Iterator<String> {
 		lastIndexes = new ArrayList<Integer>();
 	}
 
-	public int add(String word) {
-		int result = -1;
+	public Boolean add(String word) {
+		Boolean result = false;
 
 		char[] charactersInWord = word.toLowerCase().toCharArray();
 		int indexOfPreviousChar = -1;
 
-		// iterate through each letter to add it to the tree
-		for (int letterCount = 0; letterCount < word.length(); letterCount++) {
-			// find out if that letter is already in the tree
-			// and the correct index
-			if (this.findNextIndexOfChar(charactersInWord[letterCount],
-					indexOfPreviousChar) > -1) {
-				// If so, get the next index, and continue
-				indexOfPreviousChar = this.findNextIndexOfChar(
-						charactersInWord[letterCount], indexOfPreviousChar);
-				continue;
+		try {
+			// iterate through each letter to add it to the tree
+			for (int letterCount = 0; letterCount < word.length(); letterCount++) {
+				// find out if that letter is already in the tree
+				// and the correct index
+				if (this.findNextIndexOfChar(charactersInWord[letterCount],
+						indexOfPreviousChar) > -1) {
+					// If so, get the next index, and continue
+					indexOfPreviousChar = this.findNextIndexOfChar(
+							charactersInWord[letterCount], indexOfPreviousChar);
+					continue;
+				}
+
+				// Add the letter to the list
+				letters.add(charactersInWord[letterCount]);
+				// add the index of the previous letter
+				linkedIndexes.add(indexOfPreviousChar);
+
+				// because we added a new letter to the tree
+				// the new index is the last inserted one
+				indexOfPreviousChar = letters.size() - 1;
+				result = true;
 			}
-
-			// Add the letter to the list
-			letters.add(charactersInWord[letterCount]);
-			// add the index of the previous letter
-			linkedIndexes.add(indexOfPreviousChar);
-
-			// because we added a new letter to the tree
-			// the new index is the last inserted one
-			indexOfPreviousChar = letters.size() - 1;
+		} catch (Exception e) {
+			result = false;
+			e.printStackTrace();
 		}
 
 		lastIndexes.add(letters.size() - 1);
@@ -211,12 +217,14 @@ public class TrieTree implements Iterator<String> {
 		lastIndexes.remove(iteratorIndex);
 	}
 
-	public String toString()
-	{
+	public String toString() {
 		return "Trie that contains " + lastIndexes.size() + " words";
-		
+
 	}
 
-	//public void accept(V)
+	public List<String> accept(Visitor v) {
+		return v.visitTrieTree(this);
+
+	}
 
 }
