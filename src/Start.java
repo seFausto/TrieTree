@@ -14,36 +14,19 @@ public class Start {
 
 		t.containsSubstring("ar");
 
-		Visitor v = new VisitorGetWordWithCK();
+		VisitorStrategy vs = new VisitorStrategyImplementation();
+		Strategy s = new StrategyContainsTwoVowels();
+		vs.setStrategy(s);
+		List<String> words = vs.visitTree(t);
+		
+		printStringList(words);
+	}
 
-		List<String> words = new ArrayList<String>();
-
-		// words = t.containsSubstring("ck");
-		words = t.accept(v);
-
-		for (int i = 0; i < words.size(); i++) {
+	private static void printStringList(List<String> words) {
+		for(int i = 0; i<words.size(); i++)
+		{
 			System.out.println(words.get(i));
+			
 		}
-
-		// List<String> wordsWithCK = new ArrayList<String>();
-		//
-		//
-		// while (t.hasNext()) {
-		// String currentWord = t.next();
-		// if (currentWord.contains("ck"))
-		// {
-		// wordsWithCK.add(currentWord);
-		// }
-		// }
-		//
-		//
-		// for(int i =0; i<wordsWithCK.size(); i++)
-		// {
-		// System.out.println(wordsWithCK.get(i));
-		//
-		// }
-		//
-		// System.out.println(t.toString());
-
 	}
 }
