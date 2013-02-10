@@ -8,23 +8,21 @@ public class StrategyContainsTwoVowels extends Strategy {
 	@Override
 	List<String> algorithm(TrieTree tree) {
 		List<String> result = new ArrayList<String>();
-		
-		while(tree.hasNext())
-		{
+
+		while (tree.hasNext()) {
 			String currentWord = tree.next();
-			int countOfMatches=0;
+			int countOfMatches = 0;
 			for (int j = 0; j < LETTERSTOCHECK.length(); j++) {
-				if (currentWord.indexOf(LETTERSTOCHECK.charAt(j))>=0) {
+				if (currentWord.indexOf(LETTERSTOCHECK.charAt(j)) >= 0) {
 					countOfMatches++;
 				}
 			}
-			
-			if (countOfMatches >= NUMBEROFLETTESTOFIND)
-			{
+
+			if (countOfMatches >= NUMBEROFLETTESTOFIND) {
 				result.add(currentWord);
 			}
 		}
-		
+
 		return result;
 	}
 

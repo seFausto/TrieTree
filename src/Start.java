@@ -18,15 +18,14 @@ public class Start {
 		Strategy s = new StrategyWordsContainingTH();
 		vs.setStrategy(s);
 		List<String> words = vs.visitTree(t);
-		
+
 		printStringList(words);
 	}
 
 	private static void printStringList(List<String> words) {
-		for(int i = 0; i<words.size(); i++)
-		{
+		for (int i = 0; i < words.size(); i++) {
 			System.out.println(words.get(i));
-			
+
 		}
 	}
 }
