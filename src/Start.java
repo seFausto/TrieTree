@@ -1,5 +1,8 @@
 
+import java.util.*;
+
 public class Start {
+	
 	public static void main(String[] args) {
 		TrieTree t = new TrieTree();
 		t.add("are");
@@ -7,25 +10,34 @@ public class Start {
 		t.add("amber");
 		t.add("test");
 		t.add("bARato");
+		t.add("check");
+		t.add("checkmate");
 
 		t.containsSubstring("ar");
 
-		while (t.hasNext()) {
-			String temp = t.next();
 
-			if (temp.equals("test")) {
-				System.out.println("removing test");
-				t.remove();
-			}
-			else
+
+		List<String> wordsWithCK = new ArrayList<String>();
+		
+		
+		while (t.hasNext()) {
+			String currentWord = t.next();
+			if (currentWord.contains("ck"))
 			{
-				System.out.println(temp);
+				wordsWithCK.add(currentWord);
 			}
 		}
 		
 		
+		for(int i =0; i<wordsWithCK.size(); i++)
+		{
+			System.out.println(wordsWithCK.get(i));
+			
+		}
 		
-		System.out.println(t.toString());
+		
+		
+		//System.out.println(t.toString());
 
 	}
 }

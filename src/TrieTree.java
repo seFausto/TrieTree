@@ -216,4 +216,7 @@ public class TrieTree implements Iterator<String> {
 		return "Trie that contains " + lastIndexes.size() + " words";
 		
 	}
+
+	//public void accept(V)
+
 }
