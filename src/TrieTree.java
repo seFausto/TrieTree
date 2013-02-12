@@ -227,4 +227,8 @@ public class TrieTree implements Iterator<String> {
 
 	}
 
+	public int size()
+	{
+		return lastIndexes.size();
+	}
 }

@@ -58,4 +58,41 @@ public class TrieTreeTest {
 		assertTrue(result.size() == 3);
 	}
 
+	@Test
+	public void testHasNext() {
+
+		assertTrue(tree.hasNext());
+
+	}
+
+	@Test
+	public void testNotHasNext() {
+		tree = new TrieTree();
+
+		assertFalse(tree.hasNext());
+
+	}
+
+	@Test
+	public void testNext() {
+		int count = 0;
+
+		while (tree.hasNext()) {
+
+			tree.next();
+			count++;
+
+		}
+		assertTrue(count == 5);
+
+	}
+
+	@Test
+	public void testRemove() {
+		while (tree.hasNext()) {
+			tree.remove();
+		}
+
+		assertTrue(tree.size() == 0);
+	}
 }
